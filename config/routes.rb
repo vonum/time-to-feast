@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :users, only: [:index, :show]
-  resources :restaurants
+  resources :restaurants do
+    resources :tables
+  end
   resources :friendships, only: [:destroy] do
     member do
       get 'send_request'
