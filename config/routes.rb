@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  resources :users, only: [:index, :show]
+  resources :restaurants
+  resources :friendships, only: [:destroy] do
+    member do
+      get 'send_request'
+      get 'accept_request'
+    end
+  end
   root 'home#index'
 
   # Example of regular route:

@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #devise for user authentication
 gem 'devise'
 
+gem 'has_friendship'
+
 gem 'mysql2', '~> 0.3.11'
 
 # Use ActiveModel has_secure_password

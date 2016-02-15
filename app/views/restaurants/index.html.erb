@@ -1,0 +1,13 @@
+<h1> Restaurants </h1>
+
+<table>
+<% @rests.each do |rest| %>
+	<tr>
+		<td><p> <%= "#{rest.name}" %></p></td> 
+		<td><p> <%= "#{rest.description}" %></p></td>
+		<td><%= link_to 'View', restaurant_path(rest) %></td>
+		<td><%= link_to 'Edit', edit_restaurant_path(rest) %></td>
+		<td><%= button_to 'Delete', restaurant_path(rest), method: :delete %></td>
+	</tr>
+<% end %>
+</table>

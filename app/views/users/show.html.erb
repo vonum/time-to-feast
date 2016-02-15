@@ -1,0 +1,12 @@
+<h1>Hello user</h1>
+
+<%= @user.name %>
+
+<table>
+<% @user.requested_friends.each do |friend| %>
+	<tr>
+		<td><%= "#{friend.name}" %></td>
+		<td><%= link_to 'Add', accept_request_friendship_path(friend) %></td>
+	</tr>
+<% end %>
+</table>

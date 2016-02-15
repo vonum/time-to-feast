@@ -1,0 +1,13 @@
+<h1>All nerds together</h1>
+
+<table>
+<% @users.each do |user| %>
+	<tr>
+		<td><p> <%= "#{user.name}" %></p></td> 
+		<td><p> <%= "#{user.surname}" %></p></td>
+		<td><%= link_to 'View', user_path(user) %></td>
+		<td><%= link_to 'Add Friend', send_request_friendship_path(user) %></td>
+		<td><%= button_to 'Remove Friend', friendship_path(user), method: :delete %></td>
+	</tr>
+<% end %>
+</table>
