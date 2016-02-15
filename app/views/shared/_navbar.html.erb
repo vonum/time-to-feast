@@ -1,10 +1,23 @@
-<nav class = "navbar navbar-devault" role = "navigation">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+    </div>
 
-	<div class = "container">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Restaurants', restaurants_path%></li>
+      <li><%= link_to 'Users', users_path%></li>
+    </ul>
 
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+      	<li><%= link_to current_user.email, profile_user_path(current_user) %></li>
+		<li><%= button_to 'Logout', destroy_user_session_path, method: :delete %></li>
+	  <% else %>
+	    <li><%= link_to 'Sign in', new_user_session_path %></li>
+	    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+    </ul>
 
-	<%= link_to "Home", root_path, class: "navbaar-brand"%>	
-	<%= link_to "Home", root_path, class: "navbaar-brand"%>	
-	</div>
-
+  </div>
 </nav>

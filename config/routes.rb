@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      get 'profile'
+      get 'friends'
+    end
+  end
   resources :restaurants do
     resources :tables
   end
