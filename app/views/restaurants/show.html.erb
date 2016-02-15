@@ -1,3 +1,14 @@
 <h1> <%= "#{@rest.name}" %> </h1>
 
 <p> <%= "#{@rest.description}" %> </p>
+
+<table>
+<% @tables.each do |table| %>
+	<tr>
+		<td> <%= "#{table.id}" %> </td>
+		<td> <%= "Seats: #{table.noseats}" %> </td>
+	</tr>
+<% end %>
+<table>
+
+<%= link_to 'Add table', new_restaurant_table_path(@rest) %>

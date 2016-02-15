@@ -2,12 +2,12 @@ class RestaurantsController < ApplicationController
 
 	before_action :authenticate_user!, except: [:index, :show]
 
-
 	def index
 		@rests = Restaurant.all
 	end
 	def show
 		@rest = Restaurant.find(params[:id])
+		@tables = @rest.tables
 	end
 	def new
 		@rest = Restaurant.new
