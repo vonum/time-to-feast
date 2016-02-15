@@ -1,4 +1,40 @@
-<h1>All nerds together</h1>
+<%= render 'shared/navbar' %>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-10">
+		    <div class="panel panel-primary">
+		      	<div class="panel-heading">Users</div>
+		      	<div class="panel-body">
+		    		<table class = "table">
+						<thead>
+							<th>#</th>
+							<th>Email</th>
+							<th>Name</th>
+							<th>Surname</th>						
+						</thead>
+						<tbody>
+						<% @users.each_with_index do |us, idx| %>
+							<tr>
+								<td><%= idx + 1 %></td>
+								<td><%= link_to "#{us.email}", user_path(us) %></td> 
+								<td><%= "#{us.name}" %></td>
+								<td><%= "#{us.surname}" %></td>
+								<% unless !user_signed_in?%>
+								<td><%= link_to 'Send request', send_request_friendship_path(us) %></td>
+								<% end %>
+								<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
+								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
+							</tr>
+						<% end %>
+						</tbody>
+					</table>
+		      	</div>
+		    </div>
+		</div>
+	</div>
+<div/>
 
 <table>
 <% @users.each do |user| %>
