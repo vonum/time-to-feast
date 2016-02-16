@@ -20,10 +20,9 @@
 								<td><%= "#{us.name}" %></td>
 								<td><%= "#{us.surname}" %></td>
 								<% unless !user_signed_in?%>
-								<td><%= link_to 'Send request', send_request_friendship_path(us) %></td>
+								<%#<td><%= link_to 'Send request', send_request_friendship_path(us) %>
+								<td><%= link_for_user(us) %></td>
 								<% end %>
-								<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
-								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
 							</tr>
 						<% end %>
 						</tbody>
@@ -33,15 +32,3 @@
 		</div>
 	</div>
 <div/>
-
-<table>
-<% @users.each do |user| %>
-	<tr>
-		<td><p> <%= "#{user.name}" %></p></td> 
-		<td><p> <%= "#{user.surname}" %></p></td>
-		<td><%= link_to 'View', user_path(user) %></td>
-		<td><%= link_to 'Add Friend', send_request_friendship_path(user) %></td>
-		<td><%= button_to 'Remove Friend', friendship_path(user), method: :delete %></td>
-	</tr>
-<% end %>
-</table>
