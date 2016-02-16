@@ -24,4 +24,11 @@ class FriendshipsController < ApplicationController
 		@user.friend_request(friend)
 		redirect_to @user
 	end
+	def decline_request
+		@user = current_user
+		friend = User.find(params[:id])
+
+		@user.decline_request(friend)
+		redirect_to @user
+	end
 end

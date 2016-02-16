@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     member do
       get 'send_request'
       get 'accept_request'
+      get 'decline_request'
     end
   end
   root 'home#index'

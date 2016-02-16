@@ -47,7 +47,11 @@
           <ul class="list-group">
             <li class="list-group-item text-muted">Friend requests</li>
             <% current_user.requested_friends.each do |friend| %>
-	            <li class="list-group-item"><span class="pull-right"><strong><%= link_to "Add", accept_request_friendship_path(friend)%></strong></span><%= link_to "#{friend.name} #{friend.surname}", user_path(friend)%></li>
+	            <li class="list-group-item">
+	            	<span class="pull-right"><strong><%= link_to "Decline", decline_request_friendship_path(friend)%></strong></span>
+	            	<span class="pull-right"><strong><%= link_to "Accept", accept_request_friendship_path(friend)%></strong></span>
+	            	<%= link_to "#{friend.name} #{friend.surname}", user_path(friend)%>
+	           	</li>
             <% end %>
           </ul> 
        	</div>
