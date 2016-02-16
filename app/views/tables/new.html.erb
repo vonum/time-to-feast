@@ -1,13 +1,19 @@
+<div class="container">
 <h1> New Table </h1>
 
 <%= form_for([@restaurant, @table]) do |f| %>
 
-  <p>
-    <%= f.label :noseats %><br>
-    <%= f.text_field :noseats %>
-  </p>
+	<div class="form-group">
+		<p>
+		   <%= f.label :noseats %><br>
+		   <%= f.text_field :noseats %>
+		</p>
+  	</div>
  
-  <p>
-    <%= f.submit %>
-  </p>
+ 	<div class="form-group">
+	  	<p>
+	    	<%= f.submit 'Save', class: "btn" %>
+	 	</p>
+	</div>
 <% end %>
+</div>
