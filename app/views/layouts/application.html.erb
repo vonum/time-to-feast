@@ -9,7 +9,12 @@
 </head>
 <body>
 
-<%= render partial: 'shared/navbar' %>
+<% if admin_signed_in? %>
+	<%= render partial: 'shared/admin_navbar' %>
+	<h1>PLS</h1>
+<% else %>
+	<%= render partial: 'shared/navbar' %>
+<% end %>
 
 <div class="container">
 	<% if notice %><div class="alert alert-info"><%= notice %></div>

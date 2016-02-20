@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Restaurants', restaurants_path%></li>
+      <li><%= link_to 'Managers', managers_path%></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+		  <li><%= button_to 'Logout', destroy_admin_session_path, method: :delete %></li>
+    </ul>
+
+  </div>
+</nav>
