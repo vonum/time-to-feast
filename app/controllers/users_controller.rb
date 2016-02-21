@@ -18,4 +18,8 @@ class UsersController < ApplicationController
 	def friends
 
 	end
+	def reservations
+		@user = current_user
+		@reservations = @user.reservations
+	end
 end

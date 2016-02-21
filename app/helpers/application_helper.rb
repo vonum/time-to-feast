@@ -12,4 +12,18 @@ module ApplicationHelper
 		user = User.find(id)
 		user.name + " " + user.surname
 	end
+
+	def link_for_user_reservations
+		if user_signed_in?
+			if !current_user.admin
+				link_to 'My Reservations', reservations_users_path
+			end
+		end
+	end
+
+	def name_for_restaurant id
+		table = Table.find(id)
+		restaurant = Restaurant.find(table.restaurant_id)
+		restaurant.name
+	end
 end

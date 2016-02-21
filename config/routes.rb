@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get 'profile'
       get 'friends'
     end
+    collection do
+      get 'reservations'
+    end
   end
   resources :restaurants do
     resources :tables do
