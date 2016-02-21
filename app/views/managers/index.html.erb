@@ -20,7 +20,7 @@
 								<td><%= "#{man.surname}" %></td>
 								<td><%= link_to "#{man.email}", manager_path(man) %></td>
 								<td><%= link_to 'Edit', edit_manager_path(man) %> </td>
-								<td><%= button_to 'Delete', manager_path(man), method: :delete %></td>
+								<td><%= button_to 'Delete', manager_path(man), method: :delete, class: 'btn' %></td>
 							</tr>
 						<% end %>
 						</tbody>
