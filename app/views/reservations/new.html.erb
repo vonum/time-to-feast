@@ -1,0 +1,33 @@
+<div class="container">
+<h1> New Reservation </h1>
+
+<%= form_for([@restaurant, @table, @reservation]) do |f| %>
+
+	<div class="form-group">
+		<p>
+		   <%= f.label :date %><br>
+		   <%= date_field(:reservation, :date) %>
+		</p>
+  	</div>
+
+  	<div class="form-group">
+		<p>
+		   <%= f.label :start %><br>
+		   <%= time_field(:reservation, :start) %>
+		</p>
+  	</div>
+
+  	<div class="form-group">
+		<p>
+		   <%= f.label :finish %><br>
+		   <%= time_field(:reservation, :finish) %>
+		</p>
+  	</div>
+ 
+ 	<div class="form-group">
+	  	<p>
+	    	<%= f.submit 'Save', class: "btn" %>
+	 	</p>
+	</div>
+<% end %>
+</div>

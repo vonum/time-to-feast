@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     end
   end
   resources :restaurants do
-    resources :tables
+    resources :tables do
+      resources :reservations, only: [:index, :new, :create]
+    end
   end
   resources :friendships, only: [:destroy] do
     member do
