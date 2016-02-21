@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     resources :tables do
       resources :reservations, only: [:index, :new, :create]
     end
+    member do
+      get 'reservations'
+    end
   end
   resources :friendships, only: [:destroy] do
     member do

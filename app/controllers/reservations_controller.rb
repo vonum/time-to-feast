@@ -1,6 +1,8 @@
 class ReservationsController < ApplicationController
 	def index
-
+		@restaurant = Restaurant.find(params[:restaurant_id])
+		@table = Table.find(params[:table_id])
+		@reservations = @table.reservations
 	end
 	def new
 		@restaurant = Restaurant.find(params[:restaurant_id])

@@ -43,6 +43,11 @@ class RestaurantsController < ApplicationController
 		end
 	end
 
+	def reservations
+		@rest = Restaurant.find(params[:id])
+		@tables = @rest.tables
+	end
+
 	private
 	def restaurant_params
 		params.require(:restaurant).permit(:name, :description)
