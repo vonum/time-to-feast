@@ -26,8 +26,10 @@
 						</tbody>
 					</table>
 		      	</div>
-		      	<% unless !current_user.admin %>
-		      		<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-info"%>
+		      	<% if user_signed_in? %>
+			      	<% unless !current_user.admin %>
+			      		<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-info"%>
+			      	<% end %>
 		      	<% end %>
 		    </div>
 		</div>
