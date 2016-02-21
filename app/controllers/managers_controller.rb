@@ -11,6 +11,16 @@ class ManagersController < ApplicationController
 		@manager = User.new
 	end
 	def create
-
+		@manager = User.new(manager_params)
+		@manager.admin = true
+		if @manager.save
+			redirect_to action: 'index'
+		else
+			redirect_to action: 'new'
+		end
+	end
+	private
+	def manager_params
+		params.require(:user).permit(:email, :name, :surname, :password)
 	end
 end
