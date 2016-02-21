@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name << :surname <<:admin
-	devise_parameter_sanitizer.for(:account_update) << :name << :surname <<:admin
+    devise_parameter_sanitizer.for(:sign_up) << :name << :surname 
+	devise_parameter_sanitizer.for(:account_update) << :name << :surname 
   end
 
 end
