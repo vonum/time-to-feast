@@ -7,4 +7,9 @@ module ApplicationHelper
 			link_to 'Send request', send_request_friendship_path(user)
 		end
 	end
+
+	def name_for_user id
+		user = User.find(id)
+		user.name + " " + user.surname
+	end
 end
