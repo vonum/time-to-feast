@@ -24,10 +24,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 #devise for user authentication
 gem 'devise'
-
+#relationship between users
 gem 'has_friendship'
-
+#mysql
 gem 'mysql2', '~> 0.3.11'
+#calculates time difference
+gem 'time_difference', '~> 0.4.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'test' => 'home#test'
+  get 'test2' => 'home#test2'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
