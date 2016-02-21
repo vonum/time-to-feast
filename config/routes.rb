@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get 'decline_request'
     end
   end
-  resources :managers, only: [:index, :show, :new, :create]
+  resources :managers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   root 'home#index'
 

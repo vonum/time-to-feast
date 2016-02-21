@@ -1,5 +1,28 @@
-<h1>Admin </h1>
-
-<p><%= "#{@manager.name}" %></p>
-<p><%= "#{@manager.surname}" %></p>
-<p<%= "#{@manager.email}" %></p>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 col-md-4 user-details">
+            <div>
+                <div class="container">
+                    <h3>Details:</h3>
+                    <span class="help-block"><%= "manager id: #{@manager.id}"%></span>
+                </div>
+                <div class="container">
+                    <div class="tab-content">
+                        <div id="information" class="tab-pane active">
+                            <p><strong>Name: </strong><%= "#{@manager.name}"%></p>
+                            <p><strong>Surname: </strong><%= "#{@manager.surname}"%></p>
+                            <p><strong>Email: </strong><%= "#{@manager.email}"%></p>
+                            <p><strong>Working since: </strong><%= "#{@manager.created_at.to_date}"%></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div id="information" class="tab-pane active">
+                        <h4>Restaurants</h4>
+                    </div>
+                    <%= link_to 'Edit', edit_manager_path(@manager) %>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

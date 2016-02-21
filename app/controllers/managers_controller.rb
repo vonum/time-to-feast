@@ -19,8 +19,24 @@ class ManagersController < ApplicationController
 			redirect_to action: 'new'
 		end
 	end
+	def edit
+		@manager = User.find(params[:id])
+	end
+	def update
+		@manager = User.find(params[:id])
+		if @manager.update(manager_params)
+			redirect_to @manager
+		else
+			redirect_to action: 'edit'
+		end
+	end
+	def destroy
+		@manager = User.find(params[:id])
+		@manager.destroy
+		redirect_to action: 'index'
+	end
 	private
 	def manager_params
-		params.require(:user).permit(:email, :name, :surname, :password)
+		params.require(:manager).permit(:email, :name, :surname, :password)
 	end
 end

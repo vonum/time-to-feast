@@ -1,7 +1,7 @@
 <div class="container">
-<h1>New Manager</h1>
+<h1>Edit Manager</h1>
 
-<%= form_for :manager, url: managers_path do |f| %>
+<%= form_for :manager, url: manager_path(@manager), method: :patch do |f| %>
 
   <div class = "form-group">
   <p>
