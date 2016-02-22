@@ -20,6 +20,7 @@
 								<td><%= "#{res.table_id}" %></td> 
 								<td><%= "#{res.date}" %></td>
 								<td><%= "#{res.start.strftime('%H:%M')} : #{res.finish.strftime('%H:%M')}" %></td>
+								<td><%= link_to 'View', restaurant_table_reservation_path(restaurant_id(res.table_id), res.table_id, res.id) %></td>
 							</tr>
 						<% end %>
 						</tbody>

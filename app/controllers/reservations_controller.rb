@@ -23,8 +23,25 @@ class ReservationsController < ApplicationController
 		else
 			redirect_to action: 'new'
 		end
-
 	end
+	def show
+		@reservation = Reservation.find(params[:id])
+		@user = User.find(@reservation.user_id)
+		@users = User.all
+	end
+	def invite
+		@reservation = Reservation.find(params[:id])
+		@invitation = Invitation.new
+		@invitation.reservation_id = @reservation.id
+		@invitation.user_id = params[:format]
+
+		if @invitation.save
+			redirect_to(:back)
+		else
+			redirect_to root_path
+		end
+	end
+
 
 	private
 	def reservation_params

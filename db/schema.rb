@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221122116) do
+ActiveRecord::Schema.define(version: 20160222110623) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20160221122116) do
     t.datetime "updated_at"
     t.integer  "blocker_id"
   end
+
+  create_table "invitations", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "reservation_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["reservation_id"], name: "index_invitations_on_reservation_id", using: :btree
+  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "reservations", force: true do |t|
     t.date     "date",       null: false

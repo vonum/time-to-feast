@@ -41,4 +41,8 @@ module ApplicationHelper
 		end
 	end
 
+	def restaurant_id table
+		table = Table.find(table)
+		table.restaurant_id
+	end
 end

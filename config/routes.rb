@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   end
   resources :restaurants do
     resources :tables do
-      resources :reservations, only: [:index, :new, :create]
+      resources :reservations, only: [:index, :new, :create, :show] do
+        member do
+          get 'invite'
+        end
+      end
     end
     member do
       get 'reservations'
@@ -32,6 +36,8 @@ Rails.application.routes.draw do
   resources :managers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   root 'home#index'
+
+  get 'invitation/:reservation_id/:user_id' => 'invitation#invite'
 
   get 'test' => 'home#test'
   get 'test2' => 'home#test2'

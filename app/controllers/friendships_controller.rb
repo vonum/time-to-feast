@@ -21,7 +21,7 @@ class FriendshipsController < ApplicationController
 		@user = current_user
 		friend = User.find(params[:id])
 
-		@user.friend_request(friend)
+		@user.friend_request(friend) unless (@user.admin or friend.admin)
 		redirect_to @user
 	end
 	def decline_request
