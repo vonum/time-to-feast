@@ -1,15 +1,31 @@
+<div class="container">
 <h1> <%= "#{@rest.name}" %> </h1>
 
-<p> <%= "#{@rest.description}" %> </p>
+<h3><small> <%= "#{@rest.description}" %> </small></h3>
 
-<table>
-<% @tables.each do |table| %>
-	<tr>
-		<td> <%= "#{table.id}" %> </td>
-		<td> <%= "Seats: #{table.noseats}" %> </td>
-		<td> <%= link_to 'Add reservation', new_restaurant_table_reservation_path(@rest, table) %> </td>
-	</tr>
-<% end %>
-<table>
+<div class="panel panel-primary">
+   	<div class="panel-heading">Restaurant</div>
+	   	<div class="panel-body">
+	   		<table class = "table">
+				<thead>
+					<th>#</th>
+					<th>Table ID</th>
+					<th>No. seats</th>
+				</thead>
+				<tbody>
+					<% @tables.each_with_index do |table, idx| %>
+						<tr>
+							<td><%= idx + 1 %></td>
+							<td><%= "#{table.id}" %></td> 
+							<td><%= "#{table.noseats}" %></td>
+							<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
+							<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<%= link_for_adding_tables(@rest) %>
+    </div>
 
-<%= link_to 'Add table', new_restaurant_table_path(@rest) %>
+</div>

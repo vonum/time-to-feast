@@ -26,4 +26,17 @@ module ApplicationHelper
 		restaurant = Restaurant.find(table.restaurant_id)
 		restaurant.name
 	end
+
+	def link_for_adding_tables rest
+		if admin_signed_in?
+			link_to 'Add Table',  new_restaurant_table_path(rest)
+		else
+			if user_signed_in?
+				if current_user.admin
+					link_to 'Add Table',  new_restaurant_table_path(rest)
+				end
+			end
+		end
+	end
+	
 end
