@@ -62,4 +62,37 @@ module ApplicationHelper
 		reservation = Reservation.find(reservation)
 		reservation
 	end
+
+	def add_reservation restaurant, table
+		if user_signed_in?
+			if !current_user.admin
+				link_to 'Add Reservation', new_restaurant_table_reservation_path(restaurant, table)
+			end
+		end
+	end
+
+	def link_for_destroy_table restaurant, table
+		if admin_signed_in?
+			button_to 'Delete', restaurant_table_path(restaurant, table), method: :delete, class: 'btn'
+		else
+			if user_signed_in?
+				if current_user.admin
+					button_to 'Delete', restaurant_table_path(restaurant, table), method: :delete, class: 'btn'
+				end
+			end
+		end
+	end
+
+	def reservations_for_table restaurant, table
+		if admin_signed_in?
+			link_to 'See Reservations', restaurant_table_reservations_path(restaurant, table)
+		else
+			if user_signed_in?
+				if current_user.admin
+					link_to 'See Reservations', restaurant_table_reservations_path(restaurant, table)
+				end
+			end
+		end
+
+	end
 end

@@ -2,12 +2,12 @@
 
 	<div class="row">
 		<div class="col-sm-10">
+			<h1>Reservations</h1>
 		    <div class="panel panel-primary">
-		      	<div class="panel-heading">Reservations</div>
 		      	<div class="panel-heading">Restaurant <%= " #{@restaurant.name}" %></div>
-		      	<div class="panel-heading">Table <%= " #{@table.id}" %></div>
 		      	<div class="panel-body">
 		    		<table class = "table">
+		    			<caption class="text-left"><%="Table #{@table.id}"%></caption>
 						<thead>
 							<th>#</th>
 							<th>User</th>
@@ -20,7 +20,7 @@
 								<td><%= idx + 1 %></td>
 								<td><%= "#{res.user_id}" %></td> 
 								<td><%= "#{res.date}" %></td>
-								<td><%= "#{res.start} : #{res.finish}" %></td>
+								<td><%= "#{res.start.strftime('%H:%M')} : #{res.finish.strftime('%H:%M')}" %></td>
 							</tr>
 						<% end %>
 						</tbody>

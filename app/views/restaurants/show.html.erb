@@ -3,6 +3,7 @@
 
 <h3><small> <%= "#{@rest.description}" %> </small></h3>
 
+<div class="col-sm-10">
 <div class="panel panel-primary">
    	<div class="panel-heading">Restaurant</div>
 	   	<div class="panel-body">
@@ -20,6 +21,9 @@
 							<td><%= "#{table.noseats}" %></td>
 							<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
 							<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
+							<td><%= add_reservation(@rest, table) %></td>
+							<td><%= reservations_for_table(@rest, table) %></td>
+							<td><%= link_for_destroy_table(@rest, table) %></td>
 						</tr>
 					<% end %>
 				</tbody>
@@ -27,5 +31,6 @@
 		</div>
 		<%= link_for_adding_tables(@rest) %>
     </div>
+   	</div>
 
 </div>
