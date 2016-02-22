@@ -56,6 +56,33 @@
           </ul> 
        	</div>
 
+        <div class="col-sm-6"><!--left col-->
+              
+            <table class = "table">
+              <caption>Invites</caption>
+              <thead>
+                <th>#</th>
+                <th>Friend</th>
+                <th>Restaurant</th>
+                <th>Date</th>
+                <th>Time</th>            
+              </thead>
+              <tbody>
+                <% @invitations.each_with_index do |inv, idx| %>
+                  <tr>
+                    <% res = reservation(inv.reservation_id) %>
+                    <td><%= "#{idx + 1}" %></td>
+                    <td><%= name_for_user(inv.user_id) %></td>
+                    <td><%= restaurant_name(inv.reservation_id) %></td>
+                    <td><%= "#{res.date}"%></td>
+                    <td><%= "#{res.start.strftime('%H:%M')} : #{res.finish.strftime('%H:%M')}"%></td>
+                    <td><%= link_to 'Accept', accept_invite_user_path(inv.id) %></td>
+                    <td><%= link_to 'Decline', decline_invite_user_path(inv.id) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+
+            </table>
 
     </div>
 

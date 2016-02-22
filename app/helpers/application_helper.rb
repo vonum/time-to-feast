@@ -45,4 +45,21 @@ module ApplicationHelper
 		table = Table.find(table)
 		table.restaurant_id
 	end
+
+	def table_id reservation
+		reservation = Reservation.find(reservation)
+		reservation.table_id
+	end
+
+	def restaurant_name reservation
+		reservation = Reservation.find(reservation)
+		table = Table.find(reservation.table_id)
+		restaurant = Restaurant.find(table.restaurant_id)
+		restaurant.name
+	end
+
+	def reservation reservation
+		reservation = Reservation.find(reservation)
+		reservation
+	end
 end

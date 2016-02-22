@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222110623) do
+ActiveRecord::Schema.define(version: 20160222144157) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20160222110623) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "reservation_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["reservation_id"], name: "index_events_on_reservation_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "friendships", force: true do |t|
     t.integer  "friendable_id"

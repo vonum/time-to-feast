@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :tables, through: :reservations
 
   has_many :invitations
+  has_many :events
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

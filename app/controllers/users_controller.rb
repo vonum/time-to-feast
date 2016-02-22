@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 	def profile
 		@user = current_user
 		@friends = @user.friends
+		@invitations = @user.invitations
 	end
 	def friends
 
@@ -21,5 +22,25 @@ class UsersController < ApplicationController
 	def reservations
 		@user = current_user
 		@reservations = @user.reservations
+	end
+	def accept_invite
+		@user = current_user
+		@inv = Invitation.find(params[:id])
+		
+		@event = Event.new
+		@event.user_id = current_user.id
+		@event.reservation_id = @inv.reservation_id
+
+		@event.save
+		@inv.destroy
+
+		redirect_to action: 'profile'
+	end
+	def decline_invite
+
+		@inv = Invitation.find(params[:id])
+		@inv.destroy
+
+		redirect_to action: 'profile'
 	end
 end

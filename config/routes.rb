@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     member do
       get 'profile'
       get 'friends'
+      get 'accept_invite'
+      get 'decline_invite'
     end
     collection do
       get 'reservations'

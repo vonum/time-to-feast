@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
 	def show
 		@reservation = Reservation.find(params[:id])
 		@user = User.find(@reservation.user_id)
-		@users = User.all
+		@users = User.where.not(id: current_user.id)
 	end
 	def invite
 		@reservation = Reservation.find(params[:id])
