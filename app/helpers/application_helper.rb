@@ -93,6 +93,17 @@ module ApplicationHelper
 				end
 			end
 		end
+	end
 
+	def restaurant_reservations restaurant
+		if admin_signed_in?
+			link_to 'See Reservations', reservations_restaurant_path(restaurant)
+		else
+			if user_signed_in?
+				if current_user.admin
+					link_to 'See Reservations', reservations_restaurant_path(restaurant)
+				end
+			end
+		end
 	end
 end

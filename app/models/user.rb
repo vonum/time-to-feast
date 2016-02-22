@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   has_many :reservations
   has_many :tables, through: :reservations
 
-  has_many :invitations
-  has_many :events
+  has_many :invitations, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

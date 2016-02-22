@@ -18,7 +18,7 @@
 								<td><%= idx + 1 %></td>
 								<td><%= link_to "#{rest.name}", restaurant_path(rest) %></td> 
 								<td><%= "#{rest.description}" %></td>
-								<td>Some shit</td>
+								<td><%= restaurant_reservations(rest)%></td>
 								<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
 								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
 							</tr>
