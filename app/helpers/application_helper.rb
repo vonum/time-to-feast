@@ -26,7 +26,7 @@ module ApplicationHelper
 	def link_for_user_schedule
 		if user_signed_in?
 			if !current_user.admin
-				link_to 'My Schedule', schedule_users_path
+				link_to 'Timeline', schedule_users_path
 			end
 		end
 	end
