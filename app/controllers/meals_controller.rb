@@ -34,7 +34,7 @@ class MealsController < ApplicationController
 		params.require(:meal).permit(:name, :description, :price)
 	end
 	private
-	def validate_manager
+	def validate_managers
 		if !admin_signed_in?
 			if user_signed_in?
 				unless current_user.admin 
