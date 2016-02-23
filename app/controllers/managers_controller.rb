@@ -13,6 +13,7 @@ class ManagersController < ApplicationController
 	def create
 		@manager = User.new(manager_params)
 		@manager.admin = true
+		@manager.skip_confirmation!
 		if @manager.save
 			redirect_to action: 'index'
 		else

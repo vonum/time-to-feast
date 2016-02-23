@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :invitations, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :grades, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :name, :surname, presence: true
 

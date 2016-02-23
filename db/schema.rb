@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222144157) do
+ActiveRecord::Schema.define(version: 20160223020901) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20160222144157) do
     t.datetime "updated_at"
     t.integer  "blocker_id"
   end
+
+  create_table "grades", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "event_id",   null: false
+    t.integer  "grade",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grades", ["event_id"], name: "index_grades_on_event_id", using: :btree
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "user_id",        null: false
@@ -107,8 +118,12 @@ ActiveRecord::Schema.define(version: 20160222144157) do
     t.string   "name"
     t.string   "surname"
     t.boolean  "admin",                  default: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
