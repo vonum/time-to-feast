@@ -1,0 +1,33 @@
+<div class="container">
+	<h1>Restaurant <%= "#{@rest.name}" %></h1>
+	<div class="row">
+		<div class="col-sm-10">
+		    <div class="panel panel-primary">
+		      	<div class="panel-heading">Menu</div>
+		      	<div class="panel-body">
+		    		<table class = "table">
+						<thead>
+							<th>#</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Price</th>
+						</thead>
+						<tbody>
+						<% @meals.each_with_index do |meal, idx| %>
+							<tr>
+								<td><%= idx + 1 %></td>
+								<td><%= "#{meal.name}" %></td> 
+								<td><%= "#{meal.description}" %></td>
+								<td><%= "#{meal.price}" %></td>
+							</tr>
+						<% end %>
+						</tbody>
+					</table>
+		      	</div>
+		      	<% if manager_signed_in %>
+					<td><%= link_to 'Edit Menu', edit_meals_restaurants_path(@rest) %></td>
+				<% end %>
+		    </div>
+		</div>
+	</div>
+<div/>

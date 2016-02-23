@@ -26,10 +26,19 @@ Rails.application.routes.draw do
         end
       end
     end
+    collection do
+      get 'meals'
+      get 'edit_meals'
+    end
     member do
       get 'reservations'
+      post 'add_meal'
+      post 'delete_meal'
     end
   end
+
+  resources :meals, only: [:index, :new, :create, :destroy, :edit, :update]
+
   resources :friendships, only: [:destroy] do
     member do
       get 'send_request'

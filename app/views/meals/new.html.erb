@@ -1,0 +1,34 @@
+<div class="container">
+<h1>New Meal</h1>
+
+<%= form_for :meal, url: meals_path do |f| %>
+
+  <div class = "form-group">
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  </div>
+
+  <div class = "form-group">
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  </div>
+
+  <div class = "form-group">
+  <p>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </p>
+  </div>
+  
+  <div class = "form-group">
+  <p>
+    <%= f.submit 'Save', class: "btn" %>
+  </p>
+  </div>
+
+<% end %>
+</div>

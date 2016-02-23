@@ -10,7 +10,8 @@
 							<th>#</th>
 							<th>Name</th>
 							<th>Description</th>
-							<th>So much more</th>
+							<th>Meals</th>
+							<th>Average Grade</th>
 						</thead>
 						<tbody>
 						<% @rests.each_with_index do |rest, idx| %>
@@ -18,9 +19,13 @@
 								<td><%= idx + 1 %></td>
 								<td><%= link_to "#{rest.name}", restaurant_path(rest) %></td> 
 								<td><%= "#{rest.description}" %></td>
+								<td><%= link_to 'Meals', meals_restaurants_path(rest) %>
+								<td><%= grade_for_restaurant(rest) %></td>
 								<td><%= restaurant_reservations(rest)%></td>
-								<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
-								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
+								<% if manager_signed_in %>
+								<td><%= link_to 'Edit', edit_restaurant_path(rest) %></td>
+								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete, class: 'btn' %></td>
+								<% end %>
 							</tr>
 						<% end %>
 						</tbody>

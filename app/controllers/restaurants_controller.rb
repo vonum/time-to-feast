@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-	before_action :authenticate_managers, except: [:index, :show]
+	before_action :authenticate_managers, except: [:index, :show, :meals]
 
 	def index
 		@rests = Restaurant.all
@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
 		@tables = @rest.tables
 	end
 	def new
-		@rest = Restaurant.new
+		@restaurant = Restaurant.new
 	end
 	def create
 		@rest = Restaurant.new(restaurant_params)
@@ -22,7 +22,7 @@ class RestaurantsController < ApplicationController
 		end
 	end
 	def edit
-		@rest = Restaurant.find(params[:id])
+		@restaurant = Restaurant.find(params[:id])
 	end
 	def update
 		@rest = Restaurant.find(params[:id])
@@ -47,7 +47,31 @@ class RestaurantsController < ApplicationController
 		@rest = Restaurant.find(params[:id])
 		@tables = @rest.tables
 	end
+	def meals
+		@rest = Restaurant.find(params[:format])
+		@meals = @rest.meals
+	end
+	def edit_meals
+		@rest = Restaurant.find(params[:format])
+		@meals = Meal.all
+	end
+	def add_meal
+		@rest = Restaurant.find(params[:id])
+		@meal = Meal.find(params[:format])
 
+		@rest.meals.push(@meal)
+
+		redirect_to(:back)
+
+	end
+	def delete_meal
+		@rest = Restaurant.find(params[:id])
+		@meal = Meal.find(params[:format])
+
+		@rest.meals.delete(@meal)
+
+		redirect_to(:back)
+	end
 	private
 	def restaurant_params
 		params.require(:restaurant).permit(:name, :description)

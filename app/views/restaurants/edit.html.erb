@@ -1,19 +1,27 @@
-<h1> Edit rest plox </h1>
+<div class = "container">
+<h1> Edit Restaurant </h1>
 
-<%=  form_for :restaurant, url: restaurant_path(@rest), method: :patch do |f| %>
+<%=  form_for :restaurant, url: restaurant_path(@restaurant), method: :patch do |f| %>
   
+  <div class="form-group">
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
+  </div>
  
+  <div class="form-group">
   <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </p>
- 
+  </div>
+  
+  <div class="form-group">
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Edit', class: 'btn' %>
   </p>
+  </div>
 
 <% end %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223020901) do
+ActiveRecord::Schema.define(version: 20160223171236) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -73,6 +73,14 @@ ActiveRecord::Schema.define(version: 20160223020901) do
   add_index "invitations", ["reservation_id"], name: "index_invitations_on_reservation_id", using: :btree
   add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
+  create_table "meals", force: true do |t|
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.integer  "price",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reservations", force: true do |t|
     t.date     "date",       null: false
     t.time     "start",      null: false
@@ -92,6 +100,14 @@ ActiveRecord::Schema.define(version: 20160223020901) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "restaurants_meals", force: true do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "meal_id",       null: false
+  end
+
+  add_index "restaurants_meals", ["meal_id"], name: "index_restaurants_meals_on_meal_id", using: :btree
+  add_index "restaurants_meals", ["restaurant_id"], name: "index_restaurants_meals_on_restaurant_id", using: :btree
 
   create_table "tables", force: true do |t|
     t.integer  "noseats"

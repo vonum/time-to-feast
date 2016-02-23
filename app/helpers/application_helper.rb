@@ -49,6 +49,19 @@ module ApplicationHelper
 		end
 	end
 
+	def manager_signed_in
+		if admin_signed_in?
+			return true
+		else
+			if user_signed_in?
+				if current_user.admin
+					return true
+				end
+			end
+		end
+
+	end
+
 	def restaurant_id table
 		table = Table.find(table)
 		table.restaurant_id
@@ -121,5 +134,36 @@ module ApplicationHelper
 
 	def grade user, event
 		Grade.where(user_id: user, event_id: event).first.grade
+	end
+
+	def grade_for_restaurant rest
+		sql = "SELECT restaurants.name, tables.id, reservations.id, events.id, grades.id, grades.grade
+				FROM restaurants
+				INNER JOIN tables
+				ON restaurants.id = tables.restaurant_id
+				and restaurants.id = " + rest.id.to_s + "
+				INNER JOIN reservations
+				ON reservations.table_id = tables.id
+				INNER JOIN events
+				ON events.reservation_id = reservations.id
+				INNER JOIN grades
+				ON grades.event_id = events.id;"
+		records_array = ActiveRecord::Base.connection.execute(sql)
+		#avg = 0
+		#unless grades.size == 0
+		#	grades.each do |grade|
+		#		avg = avg + grade.grade
+		#	end
+		#	avg = avg / grades.size
+		#end
+		#avg
+		records_array.size
+	end
+	def add_or_delete_meal rest, meal
+		unless rest.meals.include?(meal)
+			button_to 'Add Meal', add_meal_restaurant_path(@rest, meal), method: :post, class: 'btn'
+		else
+			button_to 'Delete Meal', delete_meal_restaurant_path(@rest, meal), method: :post, class: 'btn'
+		end
 	end
 end
