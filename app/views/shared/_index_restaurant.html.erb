@@ -1,0 +1,49 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-10">
+		    <div class="panel panel-primary">
+		      	<div class="panel-heading">Restaurants</div>
+		      	<div class="panel-body">
+		    		<table class = "table">
+						<thead>
+							<th>#</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Meals</th>
+							<th>Average Grade</th>
+						</thead>
+						<tbody>
+						<% @rests.each_with_index do |rest, idx| %>
+							<tr>
+								<td><%= idx + 1 %></td>
+								<td><%= link_to "#{rest.name}", restaurant_path(rest) %></td> 
+								<td><%= "#{rest.description}" %></td>
+								<td><%= link_to 'Meals', meals_restaurants_path(rest) %>
+								<td><%= grade_for_restaurant(rest) %></td>
+								<td><%= restaurant_reservations(rest)%></td>
+								<% if manager_signed_in %>
+								<td><%= link_to 'Edit', edit_restaurant_path(rest) %></td>
+								<td><%= button_to 'Delete', restaurant_path(rest), method: :delete, class: 'btn' %></td>
+								<% end %>
+							</tr>
+						<% end %>
+						</tbody>
+					</table>
+		      	</div>
+		      	<% if user_signed_in? %>
+			      	<% unless !current_user.admin %>
+			      		<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-info"%>
+			      	<% end %>
+		      	<% end %>
+		    </div>
+		</div>
+	</div>
+	<div class="row">
+		<%= form_tag search_restaurants_path, method: 'get' do %>
+		  <p>
+		    <%= text_field_tag :search%>
+		  </p>
+		  <% end %>
+	</div>
+<div/>

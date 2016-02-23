@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		@friends = @user.friends
 		@invitations = @user.invitations.includes(:reservation).includes(:user)
+		@future_events = Event.joins(:reservation).where("events.user_id = ? and reservations.date >= ?", current_user.id, Date.today)
 	end
 	def friends
 
@@ -64,9 +65,6 @@ class UsersController < ApplicationController
 	def search
 		search = params[:search]
 		@users = User.where("name LIKE :name or surname LIKE :surname", name: "%#{search}%", surname: "%#{search}%")
-
-		redirect_to action: 'index'
-
 	end
 	private
 	def grade_params

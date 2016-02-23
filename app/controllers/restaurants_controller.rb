@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-	before_action :authenticate_managers, except: [:index, :show, :meals]
+	before_action :authenticate_managers, except: [:index, :show, :meals, :search]
 
 	def index
 		@rests = Restaurant.all
@@ -71,6 +71,10 @@ class RestaurantsController < ApplicationController
 		@rest.meals.delete(@meal)
 
 		redirect_to(:back)
+	end
+	def search
+		search = params[:search]
+		@rests = Restaurant.where("name LIKE :name or description LIKE :description", name: "%#{search}%", description: "%#{search}%")
 	end
 	private
 	def restaurant_params

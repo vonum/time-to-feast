@@ -14,21 +14,35 @@
           </ul> 
                
        	</div>
-       	<div class="col-sm-9">
-       		<table class="table">
-       			<thead>	
-       				<th>Restaurant</th>
-       				<th>Last visit</th>
-       			</thead>
-       			<tbody>
-       				<tr class="info">
-       					<td>Rest1</td>
-       					<td>Jednom</td>
-       				</tr>
-       			</tbody>
-       		</table>
-
-       	</div>
+    <div class="col-sm-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Future Events</div>
+            <div class="panel-body">
+            <table class = "table">
+            <thead>
+              <th>#</th>
+              <th>Restaurant</th>
+              <th>Reservation for</th>
+              <th>Table</th>
+              <th>Date</th>
+              <th>Time</th>
+            </thead>
+            <tbody>
+            <% @future_events.each_with_index do |data, idx| %>
+              <tr>
+                <td><%= idx + 1 %></td>
+                <td><%= name_for_restaurant(data.reservation.table_id) %></td>
+                <td><%= "#{data.reservation.user.name} #{data.reservation.user.surname}" %></td>
+                <td><%= "#{data.reservation.table_id}" %></td> 
+                <td><%= "#{data.reservation.date}" %></td>
+                <td><%= "#{data.reservation.start.strftime('%H:%M')} : #{data.reservation.finish.strftime('%H:%M')}" %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="row">

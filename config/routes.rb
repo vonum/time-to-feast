@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'reservations'
       get 'schedule'
       post 'grade'
-      post 'search'
+      get 'search'
     end
   end
   resources :restaurants do
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       get 'meals'
       get 'edit_meals'
+      get 'search'
     end
     member do
       get 'reservations'
