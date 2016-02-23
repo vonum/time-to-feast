@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'reservations'
       get 'schedule'
+      post 'grade'
     end
   end
   resources :restaurants do
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
 
   get 'test' => 'home#test'
   get 'test2' => 'home#test2'
+  post 'tmp' => 'home#tmp', as: 'tmp'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

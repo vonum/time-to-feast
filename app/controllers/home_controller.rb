@@ -16,4 +16,7 @@ class HomeController < ApplicationController
 		@difference = TimeDifference.between(@time2, @time1).in_minutes
 		@test = (TimeDifference.between(@time2, @time1).in_minutes < 30 and @time1 < @time2)
 	end
+	def tmp
+		redirect_to root_path
+	end
 end

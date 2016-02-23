@@ -43,6 +43,7 @@
 							<th>Table</th>
 							<th>Date</th>
 							<th>Time</th>
+							<th>Grade</th>
 						</thead>
 						<tbody>
 						<% @past_events.each_with_index do |data, idx| %>
@@ -53,6 +54,14 @@
 								<td><%= "#{data.reservation.table_id}" %></td> 
 								<td><%= "#{data.reservation.date}" %></td>
 								<td><%= "#{data.reservation.start.strftime('%H:%M')} : #{data.reservation.finish.strftime('%H:%M')}" %></td>
+								<td>
+									<%= form_tag grade_users_path do %>
+									  <p>
+									    <%= text_field_tag :grade %>
+									  </p>
+									  <%= hidden_field_tag :event_id, data.id %>
+									<% end %>
+								</td>
 							</tr>
 						<% end %>
 						</tbody>
