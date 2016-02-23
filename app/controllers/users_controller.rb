@@ -61,6 +61,13 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 	end
+	def search
+		search = params[:search]
+		@users = User.where("name LIKE :name or surname LIKE :surname", name: "%#{search}%", surname: "%#{search}%")
+
+		redirect_to action: 'index'
+
+	end
 	private
 	def grade_params
 		params.permit(:grade, :event_id)

@@ -28,10 +28,12 @@ class TablesController < ApplicationController
 
 	private
 	def check_manager
-		if !user_signed_in?
-			redirect_to root_path
-		else
-			unless current_user.admin 
+		if !admin_signed_in?
+			if user_signed_in?
+				unless current_user.admin 
+					redirect_to root_path
+				end
+			else
 				redirect_to root_path
 			end
 		end

@@ -1,4 +1,5 @@
 class MealsController < ApplicationController
+	before_action :validate_managers
 	def index
 		@meals = Meal.all
 	end
@@ -31,5 +32,17 @@ class MealsController < ApplicationController
 	private
 	def meal_params
 		params.require(:meal).permit(:name, :description, :price)
+	end
+	private
+	def validate_manager
+		if !admin_signed_in?
+			if user_signed_in?
+				unless current_user.admin 
+					redirect_to root_path
+				end
+			else
+				redirect_to root_path
+			end
+		end
 	end
 end

@@ -37,7 +37,7 @@
           <ul class="list-group">
             <li class="list-group-item text-muted">Friends</li>
             <% @friends.each do |friend| %>
-	            <li class="list-group-item"><span class="pull-right"><strong><%= button_to "Remove", friendship_path(friend), method: :delete%></strong></span><%= link_to "#{friend.name} #{friend.surname}", user_path(friend)%></li>
+	            <li class="list-group-item"><span class="pull-right"><strong><%= button_to "Remove", friendship_path(friend), method: :delete, class: 'btn'%></strong></span><%= link_to "#{friend.name} #{friend.surname}", user_path(friend)%></li>
             <% end %>
           </ul> 
        	</div>

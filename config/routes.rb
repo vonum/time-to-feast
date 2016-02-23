@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get 'reservations'
       get 'schedule'
       post 'grade'
+      post 'search'
     end
   end
   resources :restaurants do
