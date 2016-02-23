@@ -35,15 +35,23 @@ class ReservationsController < ApplicationController
 		@users = User.where.not(id: current_user.id)
 	end
 	def invite
-		@reservation = Reservation.find(params[:id])
-		@invitation = Invitation.new
-		@invitation.reservation_id = @reservation.id
-		@invitation.user_id = params[:format]
 
-		if @invitation.save
-			redirect_to(:back)
+		@friend = User.find(params[:format])
+
+		if current_user.friends_with?(@friend)
+
+			@reservation = Reservation.find(params[:id])
+			@invitation = Invitation.new
+			@invitation.reservation_id = @reservation.id
+			@invitation.user_id = params[:format]
+
+			if @invitation.save
+				redirect_to(:back)
+			else
+				redirect_to(:back)
+			end
 		else
-			redirect_to root_path
+			redirect_to (:back)
 		end
 	end
 

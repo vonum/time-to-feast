@@ -31,8 +31,9 @@ class UsersController < ApplicationController
 		@event.user_id = current_user.id
 		@event.reservation_id = @inv.reservation_id
 
-		@event.save
-		@inv.destroy
+		if @event.save
+			@inv.destroy
+		end
 
 		redirect_to action: 'profile'
 	end
@@ -54,8 +55,11 @@ class UsersController < ApplicationController
 	def grade
 		@grade = Grade.new(grade_params)
 		@grade.user_id = current_user.id
-		@grade.save
-		redirect_to(:back)
+		if @grade.save
+			redirect_to(:back)
+		else
+			redirect_to root_path
+		end
 	end
 	private
 	def grade_params

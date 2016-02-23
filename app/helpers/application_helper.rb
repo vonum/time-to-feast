@@ -114,4 +114,12 @@ module ApplicationHelper
 			end
 		end
 	end
+
+	def grade_present user, event
+		Grade.exists?(user_id: user, event_id: event)
+	end
+
+	def grade user, event
+		Grade.where(user_id: user, event_id: event).first.grade
+	end
 end
