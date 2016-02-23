@@ -15,18 +15,22 @@ class ReservationsController < ApplicationController
 		@reservation = @table.reservations.build(reservation_params)
 		@reservation.user_id = current_user.id
 
-		if check_dates(@reservation.start, @reservation.finish, @reservation.date) and table_free(@table, @reservation)
-			if @reservation.save
-				@event = Event.new
-				@event.user_id = current_user.id
-				@event.reservation_id = @reservation.id
-				@event.save
-				redirect_to reservations_users_path
+		if params[:reservation][:date] == "" or params[:reservation][:start] == "" or params[:reservation][:finish] == ""
+			redirect_to(:back)
+		else
+			if check_dates(@reservation.start, @reservation.finish, @reservation.date) and table_free(@table, @reservation)
+				if @reservation.save
+					@event = Event.new
+					@event.user_id = current_user.id
+					@event.reservation_id = @reservation.id
+					@event.save
+					redirect_to reservations_users_path
+				else
+					redirect_to action: 'new'
+				end
 			else
 				redirect_to action: 'new'
 			end
-		else
-			redirect_to action: 'new'
 		end
 	end
 	def show
