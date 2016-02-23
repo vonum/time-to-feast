@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'reservations'
+      get 'schedule'
     end
   end
   resources :restaurants do

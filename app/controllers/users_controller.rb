@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	def profile
 		@user = current_user
 		@friends = @user.friends
-		@invitations = @user.invitations
+		@invitations = @user.invitations.includes(:reservation).includes(:user)
 	end
 	def friends
 
@@ -42,5 +42,8 @@ class UsersController < ApplicationController
 		@inv.destroy
 
 		redirect_to action: 'profile'
+	end
+	def schedule
+		@data = Event.includes(:reservation).includes(:user)
 	end
 end

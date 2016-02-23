@@ -17,6 +17,10 @@ class ReservationsController < ApplicationController
 
 		if check_dates(@reservation.start, @reservation.finish, @reservation.date) and table_free(@table, @reservation)
 			if @reservation.save
+				@event = Event.new
+				@event.user_id = current_user.id
+				@event.reservation_id = @reservation.id
+				@event.save
 				redirect_to reservations_users_path
 			else
 				redirect_to action: 'new'
