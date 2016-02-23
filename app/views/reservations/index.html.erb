@@ -18,7 +18,7 @@
 						<% @reservations.each_with_index do |res, idx| %>
 							<tr>
 								<td><%= idx + 1 %></td>
-								<td><%= "#{res.user_id}" %></td> 
+								<td><%= "#{res.user.name} #{res.user.surname}" %></td> 
 								<td><%= "#{res.date}" %></td>
 								<td><%= "#{res.start.strftime('%H:%M')} : #{res.finish.strftime('%H:%M')}" %></td>
 							</tr>
