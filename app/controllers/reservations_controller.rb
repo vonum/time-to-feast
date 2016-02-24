@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_users
 	def index
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		@table = Table.find(params[:table_id])
@@ -76,5 +76,15 @@ class ReservationsController < ApplicationController
 			end 
 		end
 		return true
+	end
+	private
+	def authenticate_users
+		if !user_signed_in? or admin_signed_in?
+			redirect_to root_path
+		else
+			if current_user.admin
+				redirect_to root_path
+			end
+		end
 	end
 end

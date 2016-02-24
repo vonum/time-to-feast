@@ -21,7 +21,9 @@
 							<td><%= "#{table.noseats}" %></td>
 							<%#<td><%= link_to 'Edit', edit_restaurant_path(rest) </td>
 							<td><%= button_to 'Delete', restaurant_path(rest), method: :delete </td>%>
+							<% if !manager_signed_in %>
 							<td><%= add_reservation(@rest, table) %></td>
+							<% end %>
 							<td><%= reservations_for_table(@rest, table) %></td>
 							<td><%= link_for_destroy_table(@rest, table) %></td>
 						</tr>
