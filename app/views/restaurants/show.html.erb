@@ -29,7 +29,10 @@
 				</tbody>
 			</table>
 		</div>
-		<%= link_for_adding_tables(@rest) %>
+		<% if manager_signed_in %>
+		<%#= link_for_adding_tables(@rest) %>
+		<%= link_to 'Add Table',  new_restaurant_table_path(@rest), class: 'btn btn-info'%>
+		<% end %>
     </div>
    	</div>
 

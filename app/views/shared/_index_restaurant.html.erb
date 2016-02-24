@@ -31,10 +31,8 @@
 						</tbody>
 					</table>
 		      	</div>
-		      	<% if user_signed_in? %>
-			      	<% unless !current_user.admin %>
-			      		<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-info"%>
-			      	<% end %>
+		      	<% if manager_signed_in %>
+			      	<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-info"%>
 		      	<% end %>
 		    </div>
 		</div>
